@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.MembersPage"
+             Style="{StaticResource CqPage}">
+    <Grid RowDefinitions="Auto,*" Padding="24,24" RowSpacing="16" HorizontalOptions="Center" WidthRequest="1200">
+        <Grid ColumnDefinitions="*,Auto" Padding="0,4">
+            <VerticalStackLayout>
+                <Label Text="Membres"
+                       Style="{StaticResource PageTitle}" />
+                <Label Text="12 membres actifs"
+                       FontSize="13"
+                       TextColor="#64748B" />
+            </VerticalStackLayout>
+            <Button Grid.Column="1"
+                    Text="Ajouter"
+                    Style="{StaticResource ActionButton}"
+                    Clicked="OnAddMemberClicked" />
+        </Grid>
+
+        <Border Grid.Row="1"
+                BackgroundColor="#FFFFFF"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 22"
+                Padding="18"
+                Shadow="{StaticResource CqShadow}">
+            <VerticalStackLayout Spacing="12">
+                <SearchBar Placeholder="Rechercher un membre" TextChanged="OnSearchTextChanged" />
+
+                <CollectionView x:Name="MembersList" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="14,12"
+                                    Margin="0,0,0,8"
+                                    BackgroundColor="#F8FAFC"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 16">
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                    <Border WidthRequest="42"
+                                            HeightRequest="42"
+                                            BackgroundColor="#DBEAFE"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 12">
+                                        <Label Text="{Binding Initials}"
+                                               FontAttributes="Bold"
+                                               TextColor="#1E3A8A"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center" />
+                                    </Border>
+
+                                    <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="#0F172A" />
+                                        <Label Text="{Binding Phone}" FontSize="12" TextColor="#64748B" />
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Column="2" Spacing="2" HorizontalOptions="End">
+                                        <controls:StatusBadge IsLate="{Binding IsLate}" />
+                                        <Label Text="{Binding Amount, StringFormat='{0} FCFA'}"
+                                               FontSize="11"
+                                               TextColor="#475569" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

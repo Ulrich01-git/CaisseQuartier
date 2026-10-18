@@ -1,23 +1,33 @@
-﻿namespace CaisseQuartier;
+namespace CaisseQuartier;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    public MainPage()
+    {
+        InitializeComponent();
+    }
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    private async void OnLoginClicked(object sender, EventArgs e)
+    {
+        var identifier = IdentifierField?.Text ?? string.Empty;
+        var password = PasswordField?.Text ?? string.Empty;
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
+        if (string.IsNullOrWhiteSpace(identifier) || string.IsNullOrWhiteSpace(password))
+        {
+            await DisplayAlertAsync("Connexion", "Veuillez renseigner votre identifiant et votre mot de passe.", "OK");
+            return;
+        }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+        await Shell.Current.GoToAsync("//DashboardPage");
+    }
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+    private async void OnCreateAccountClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//RegisterPage");
+    }
+
+    private async void OnForgotPasswordTapped(object sender, EventArgs e)
+    {
+        await DisplayAlertAsync("Mot de passe oublié", "Contactez l'administrateur pour réinitialiser votre accès.", "OK");
+    }
 }

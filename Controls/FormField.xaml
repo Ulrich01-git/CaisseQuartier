@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CaisseQuartier.Controls.FormField">
+    <VerticalStackLayout Spacing="8">
+        <Label x:Name="TitleLabel"
+               FontSize="13"
+               FontAttributes="Bold"
+               TextColor="#1E293B" />
+
+        <Border x:Name="InputBorder"
+                Stroke="#D9E2EC"
+                StrokeShape="RoundRectangle 14"
+                BackgroundColor="#F8FAFC"
+                Padding="12,0"
+                HeightRequest="52">
+            <Grid ColumnDefinitions="*,Auto">
+                <Entry x:Name="ValueEntry"
+                       Grid.Column="0"
+                       Margin="0"
+                       PlaceholderColor="#94A3B8"
+                       TextColor="#0F172A"
+                       BackgroundColor="Transparent"
+                       FontSize="15"
+                       IsPassword="False"
+                       VerticalOptions="Center" />
+
+                <Button x:Name="TogglePasswordButton"
+                        Grid.Column="1"
+                        Text="Afficher"
+                        FontSize="12"
+                        TextColor="#2563EB"
+                        BackgroundColor="Transparent"
+                        Padding="8,0"
+                        BorderWidth="0"
+                        HeightRequest="36"
+                        IsVisible="False"
+                        Clicked="OnPasswordToggleClicked" />
+            </Grid>
+        </Border>
+
+        <Label x:Name="ErrorLabel"
+               TextColor="#DC2626"
+               FontSize="12"
+               IsVisible="False"
+               Margin="4,0,0,0" />
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.NewContributionPage"
+             Style="{StaticResource CqPage}">
+    <ScrollView>
+        <Grid Padding="24,30" RowDefinitions="Auto,*" HorizontalOptions="Center" WidthRequest="1200">
+            <VerticalStackLayout Spacing="12">
+                <Label Text="Nouvelle cotisation"
+                       Style="{StaticResource PageTitle}" />
+                <Label Text="Enregistrer une cotisation d'un membre"
+                       FontSize="14"
+                       TextColor="#64748B" />
+            </VerticalStackLayout>
+
+            <Border Grid.Row="1"
+                    WidthRequest="620"
+                    MaximumWidthRequest="620"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#FFFFFF"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 28"
+                    Padding="30"
+                    Shadow="{StaticResource CqShadow}">
+                <VerticalStackLayout Spacing="16">
+                    <Picker Title="Sélectionner le membre" />
+                    <controls:FormField x:Name="AmountField"
+                                       Title="Montant"
+                                       Placeholder="Ex : 50 000" />
+                    <DatePicker x:Name="ContributionDate" />
+                    <Editor Placeholder="Référence ou description" HeightRequest="100" Margin="0,0,0,4" />
+
+                    <Label x:Name="ValidationMessage"
+                           TextColor="#DC2626"
+                           FontSize="12"
+                           IsVisible="False" />
+
+                    <Button Text="Valider la cotisation"
+                            Style="{StaticResource PrimaryButton}"
+                            Clicked="OnValidateClicked" />
+                    <Button Text="Retour"
+                            Style="{StaticResource SecondaryButton}"
+                            Clicked="OnBackClicked" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

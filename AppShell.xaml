@@ -7,8 +7,43 @@
     Title="CaisseQuartier">
 
     <ShellContent
-        Title="Home"
+        Title="Connexion"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Inscription"
+        ContentTemplate="{DataTemplate local:RegisterPage}"
+        Route="RegisterPage" />
+
+    <ShellContent
+        Title="Accueil"
+        ContentTemplate="{DataTemplate local:DashboardPage}"
+        Route="DashboardPage" />
+
+    <ShellContent
+        Title="Membres"
+        ContentTemplate="{DataTemplate local:MembersPage}"
+        Route="MembersPage" />
+
+    <ShellContent
+        Title="Cotisations"
+        ContentTemplate="{DataTemplate local:NewContributionPage}"
+        Route="NewContributionPage" />
+
+    <ShellContent
+        Title="Dépenses"
+        ContentTemplate="{DataTemplate local:ExpensesPage}"
+        Route="ExpensesPage" />
+
+    <ShellContent
+        Title="Rapports"
+        ContentTemplate="{DataTemplate local:ReportsPage}"
+        Route="ReportsPage" />
+
+    <ShellContent
+        Title="Relances"
+        ContentTemplate="{DataTemplate local:RemindersPage}"
+        Route="RemindersPage" />
 
 </Shell>
