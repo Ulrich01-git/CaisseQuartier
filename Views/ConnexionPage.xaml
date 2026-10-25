@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.ConnexionPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Connexion">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Padding="0,8,0,16">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Content de vous revoir" Style="{StaticResource PageTitle}" />
+                    <Label Text="Connectez-vous à votre association." Style="{StaticResource SubtitleText}" />
+                </VerticalStackLayout>
+
+                <controls:InlineNotice x:Name="Notice" />
+
+                <controls:FormField x:Name="ServerField" Title="Adresse du serveur sur le Wi-Fi"
+                                    Placeholder="http://192.168.1.10:5080" />
+                <controls:FormField x:Name="IdField" Title="Identifiant"
+                                    Placeholder="Téléphone ou email"
+                                    TextChanged="OnFieldChanged" />
+
+                <controls:FormField x:Name="PasswordField" Title="Mot de passe"
+                                    Placeholder="Votre mot de passe" IsPassword="True"
+                                    TextChanged="OnFieldChanged" />
+
+                <controls:ActionButton x:Name="LoginButton" Text="Se connecter"
+                                       Kind="Primary" Clicked="OnLoginClicked" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Label Grid.Row="1" Text="Créer ou rejoindre une association" Style="{StaticResource LinkLabel}" Margin="0,0,0,8">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCreateAccountTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </Grid>
+</ContentPage>

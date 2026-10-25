@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CaisseQuartier.Controls.BrandHeader">
+    <HorizontalStackLayout Spacing="12">
+        <Border WidthRequest="40" HeightRequest="40" StrokeThickness="0"
+                StrokeShape="RoundRectangle 8"
+                BackgroundColor="{StaticResource CqNavy}">
+            <Label Text="CQ" TextColor="White" FontSize="14" FontAttributes="Bold"
+                   HorizontalOptions="Center" VerticalOptions="Center" />
+        </Border>
+        <Label Text="CaisseQuartier" Style="{StaticResource BrandName}" VerticalOptions="Center" />
+    </HorizontalStackLayout>
+</ContentView>

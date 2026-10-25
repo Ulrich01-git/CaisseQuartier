@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CaisseQuartier.Controls.BottomSheet"
+             x:Name="Root">
+    <ContentView.Content>
+        <Grid>
+            <BoxView Color="#66000000">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackdropTapped" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <Border VerticalOptions="End" BackgroundColor="{StaticResource CqSurface}"
+                    StrokeThickness="0" Padding="20,20,20,24">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20,20,0,0" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="{Binding Title, Source={x:Reference Root}}"
+                           Style="{StaticResource PageTitle}" FontSize="18" />
+                    <ContentView x:Name="BodyHost" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

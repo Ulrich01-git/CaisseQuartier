@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.NouvelleCotisationPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Nouvelle cotisation">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="16">
+                <controls:PageHeader Title="Nouvelle cotisation" />
+
+                <Label Text="Enregistrez le versement d'un membre dans la caisse."
+                       Style="{StaticResource SubtitleText}" />
+
+                <controls:InlineNotice x:Name="Notice" />
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Membre" Style="{StaticResource FieldLabel}" />
+                    <controls:PickerField x:Name="MemberField" Placeholder="Aucun membre disponible"
+                                          SelectionChanged="OnMemberChanged" />
+                </VerticalStackLayout>
+
+                <controls:FormField x:Name="AmountField" Title="Montant" Placeholder="0"
+                                    Suffix="FCFA" IsNumeric="True"
+                                    TextChanged="OnAmountChanged" />
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Date" Style="{StaticResource FieldLabel}" />
+                    <controls:DateField x:Name="DateInput" />
+                </VerticalStackLayout>
+
+                <Border BackgroundColor="{StaticResource CqInfoSoft}" StrokeThickness="0"
+                        StrokeShape="RoundRectangle 10" Padding="14,12">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Avant validation" FontSize="12" FontAttributes="Bold"
+                               TextColor="{StaticResource CqNavy}" />
+                        <Label Text="Cette saisie n'est pas encore enregistrée. Les totaux restent inchangés."
+                               Style="{StaticResource CaptionText}" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <controls:ActionButton x:Name="ValidateButton" Text="Valider" Kind="Primary"
+                                   IsEnabled="False" Clicked="OnValidateClicked" />
+            <controls:ActionButton Text="Retour" IconSource="icon_arrow_left.png"
+                                   Kind="Secondary" Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

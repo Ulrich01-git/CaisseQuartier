@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.NouveauMembrePage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Nouveau membre">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="14">
+                <controls:PageHeader Title="Ajouter un membre" />
+                <Label Text="Son profil sera immédiatement partagé dans l'annuaire. Il pourra l'activer avec son contact et le code de l'association."
+                       Style="{StaticResource SubtitleText}" />
+                <controls:InlineNotice x:Name="Notice" />
+                <controls:FormField x:Name="NameField" Title="Nom complet" Placeholder="Nom et prénom" />
+                <controls:FormField x:Name="ContactField" Title="Téléphone ou email de connexion"
+                                    Placeholder="+237 6XX XXX XXX ou nom@email.com" />
+                <controls:FormField x:Name="PhoneField" Title="Téléphone (facultatif)" Placeholder="+237 6XX XXX XXX" />
+                <controls:FormField x:Name="EmailField" Title="Email (facultatif)" Placeholder="nom@email.com" />
+                <controls:FormField x:Name="NeighborhoodField" Title="Quartier" Placeholder="Quartier / ville" />
+                <controls:FormField x:Name="OccupationField" Title="Profession ou activité"
+                                    Placeholder="Ex. commerçant, étudiant, artisan" />
+                <controls:FormField x:Name="ContributionField" Title="Cotisation mensuelle attendue"
+                                    Placeholder="0" Suffix="FCFA" IsNumeric="True" />
+                <Label Text="Le membre définira son propre mot de passe à l'inscription avec le code de l'association."
+                       Style="{StaticResource CaptionText}" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <controls:ActionButton x:Name="SaveButton" Text="Créer et partager le profil"
+                                   Kind="Primary" IsEnabled="False" Clicked="OnSaveClicked" />
+            <controls:ActionButton Text="Annuler" IconSource="icon_arrow_left.png"
+                                   Kind="Secondary" Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

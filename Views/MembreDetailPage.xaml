@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.MembreDetailPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Profil membre">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="14">
+                <controls:PageHeader Title="Profil du membre" />
+                <controls:InlineNotice x:Name="Notice" />
+
+                <Border Style="{StaticResource CardBorder}">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                        <Border WidthRequest="92" HeightRequest="92" StrokeThickness="0"
+                                BackgroundColor="{StaticResource CqInfoSoft}"
+                                StrokeShape="RoundRectangle 46">
+                            <Image x:Name="ProfilePhoto" Source="icon_users.png" Aspect="AspectFill" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="5">
+                            <Label x:Name="ProfileTitle" Style="{StaticResource SubtitleText}"
+                                   FontAttributes="Bold" TextColor="{StaticResource CqNavy}" />
+                            <Label x:Name="ProfileStatus" Style="{StaticResource CaptionText}" />
+                            <controls:ActionButton x:Name="PhotoButton" Text="Ajouter une photo"
+                                                   Kind="Secondary" Clicked="OnPhotoClicked" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <controls:FormField x:Name="NameField" Title="Nom complet" Placeholder="Nom et prénom" />
+                <controls:FormField x:Name="PhoneField" Title="Téléphone" Placeholder="+237 6XX XXX XXX" />
+                <controls:FormField x:Name="EmailField" Title="Email" Placeholder="nom@email.com" />
+                <controls:FormField x:Name="NeighborhoodField" Title="Quartier / ville" Placeholder="Votre quartier" />
+                <controls:FormField x:Name="OccupationField" Title="Profession / activité" Placeholder="Votre activité" />
+                <controls:FormField x:Name="ContributionField" Title="Cotisation mensuelle attendue"
+                                    Placeholder="0" Suffix="FCFA" IsNumeric="True" />
+
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Dans l'association" Style="{StaticResource SubtitleText}"
+                               FontAttributes="Bold" TextColor="{StaticResource CqNavy}" />
+                        <Label x:Name="ContactLabel" Style="{StaticResource CaptionText}" />
+                        <Label x:Name="JoinedLabel" Style="{StaticResource CaptionText}" />
+                        <Label x:Name="PaidLabel" Style="{StaticResource CaptionText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <VerticalStackLayout x:Name="ActivitySection" Spacing="8">
+                    <Label Text="Cotisations enregistrées" Style="{StaticResource SubtitleText}"
+                           FontAttributes="Bold" TextColor="{StaticResource CqNavy}" />
+                    <Border x:Name="ActivityCard" Style="{StaticResource CardBorder}" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <controls:ActionButton x:Name="SaveButton" Text="Enregistrer mes informations"
+                                   Kind="Primary" Clicked="OnSaveClicked" />
+            <controls:ActionButton Text="Retour à l'annuaire" IconSource="icon_arrow_left.png"
+                                   Kind="Secondary" Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

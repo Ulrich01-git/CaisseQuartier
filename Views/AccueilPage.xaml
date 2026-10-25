@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.AccueilPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Accueil">
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="0,0,0,16">
+            <Grid ColumnDefinitions="*,Auto">
+                <VerticalStackLayout Spacing="2">
+                    <Label x:Name="AssociationLabel" Text="CaisseQuartier" Style="{StaticResource PageTitle}" />
+                    <Label x:Name="PeriodLabel" Style="{StaticResource CaptionText}" />
+                </VerticalStackLayout>
+                <Label Grid.Column="1" x:Name="MemberWelcome" Style="{StaticResource SubtitleText}"
+                       VerticalOptions="Center" HorizontalTextAlignment="End" />
+            </Grid>
+            <controls:InlineNotice x:Name="WelcomeNotice" />
+
+            <VerticalStackLayout Spacing="2">
+                <Label x:Name="PurposeLabel" Style="{StaticResource SubtitleText}" />
+            </VerticalStackLayout>
+
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Solde actuel" Style="{StaticResource CaptionText}" />
+
+                    <HorizontalStackLayout x:Name="BalanceLoading" Spacing="10" IsVisible="False">
+                        <ActivityIndicator IsRunning="True" Color="{StaticResource CqNavy}"
+                                           WidthRequest="22" HeightRequest="22" />
+                        <Label Text="Calcul en cours…" Style="{StaticResource SubtitleText}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label x:Name="BalanceValue" Style="{StaticResource BigAmount}" Text="—" />
+
+                    <BoxView HeightRequest="1" Color="{StaticResource CqBorder}" />
+
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="2">
+                        <Label Text="Total cotisations" Style="{StaticResource CaptionText}" />
+                        <Label Grid.Column="1" Text="Total dépenses" Style="{StaticResource CaptionText}" />
+                        <Label x:Name="ContributionsValue" Grid.Row="1" Text="—" Style="{StaticResource ValueLabel}" />
+                        <Label x:Name="ExpensesValue" Grid.Row="1" Grid.Column="1" Text="—" Style="{StaticResource ValueLabel}" />
+                    </Grid>
+
+                    <Label x:Name="EmptyHint" Text="Aucune activité pour l'instant"
+                           Style="{StaticResource CaptionText}" IsVisible="False" />
+
+                    <BoxView HeightRequest="1" Color="{StaticResource CqBorder}" />
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Objectif de collecte mensuel" Style="{StaticResource CaptionText}" />
+                        <Label x:Name="GoalCaption" Grid.Column="1" Style="{StaticResource CaptionText}" />
+                    </Grid>
+                    <ProgressBar x:Name="GoalProgress" Progress="0"
+                                 ProgressColor="{StaticResource CqGreen}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <controls:MenuRow IconSource="icon_chart.png" Title="Projet commun et code d'invitation"
+                              Clicked="OnAssociationClicked" />
+            <controls:MenuRow IconSource="icon_users.png" Title="Mon profil partagé"
+                              Clicked="OnProfileClicked" />
+            <controls:MenuRow IconSource="icon_users.png" Title="Membres" Clicked="OnMembresClicked" />
+            <controls:MenuRow IconSource="icon_plus_circle.png" Title="Nouvelle cotisation" Clicked="OnCotisationClicked" />
+            <controls:MenuRow IconSource="icon_receipt.png" Title="Dépenses" Clicked="OnDepensesClicked" />
+            <controls:MenuRow IconSource="icon_chart.png" Title="Rapport" Clicked="OnRapportClicked" />
+            <controls:MenuRow IconSource="icon_bell.png" Title="Relances" Clicked="OnRelancesClicked" />
+            <controls:ActionButton Text="Se déconnecter" Kind="Secondary" Clicked="OnLogoutClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

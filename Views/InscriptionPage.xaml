@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.InscriptionPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Inscription">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="18" Padding="0,8,0,16">
+                <controls:BrandHeader />
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Rejoignez votre association" Style="{StaticResource PageTitle}" />
+                    <Label Text="Créez votre compte ou rejoignez votre groupe avec son code d'invitation."
+                           Style="{StaticResource SubtitleText}" />
+                </VerticalStackLayout>
+
+                <controls:InlineNotice x:Name="Notice" />
+                <controls:FormField x:Name="ServerField" Title="Adresse du serveur sur le Wi-Fi"
+                                    Placeholder="http://192.168.1.10:5080" />
+                <controls:FormField x:Name="NameField" Title="Nom complet"
+                                    Placeholder="Votre nom et prénom"
+                                    TextChanged="OnFieldChanged" />
+
+                <controls:FormField x:Name="ContactField" Title="Téléphone ou email"
+                                    Placeholder="Votre téléphone ou email"
+                                    TextChanged="OnFieldChanged" />
+
+                <controls:FormField x:Name="PasswordField" Title="Mot de passe"
+                                    Placeholder="8 caractères minimum" IsPassword="True"
+                                    TextChanged="OnFieldChanged" />
+
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Votre démarche" Style="{StaticResource FieldLabel}" />
+                    <Picker x:Name="RegistrationModePicker"
+                            Title="Choisissez une option"
+                            SelectedIndexChanged="OnRegistrationModeChanged" />
+                    <Label x:Name="RegistrationModeHint"
+                           Style="{StaticResource CaptionText}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout x:Name="JoinAssociationSection" Spacing="14" IsVisible="False">
+                    <controls:FormField x:Name="JoinCodeField" Title="Code fourni par l'administrateur"
+                                        Placeholder="Saisissez le code d'invitation"
+                                        TextChanged="OnFieldChanged" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout x:Name="CreateAssociationSection" Spacing="14">
+                    <Label Text="Vous créez une nouvelle association ? Définissez son projet commun."
+                           Style="{StaticResource SubtitleText}" />
+                    <controls:FormField x:Name="AssociationNameField" Title="Nom de l'association"
+                                        Placeholder="Ex. Les voisins solidaires" TextChanged="OnFieldChanged" />
+                    <controls:FormField x:Name="PurposeField" Title="Pourquoi cotisez-vous ?"
+                                        Placeholder="Ex. Construire un forage dans le quartier"
+                                        TextChanged="OnFieldChanged" />
+                    <controls:FormField x:Name="MonthlyGoalField" Title="Objectif de collecte par mois"
+                                        Placeholder="Ex. 250000" Suffix="FCFA" IsNumeric="True"
+                                        TextChanged="OnFieldChanged" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="8">
+                    <controls:ActionButton x:Name="SubmitButton" Text="S'inscrire" Kind="Primary"
+                                           IsEnabled="False" Clicked="OnSubmitClicked" />
+                    <Label x:Name="HelperLabel" Style="{StaticResource CaptionText}"
+                           HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Label Grid.Row="1" Text="Déjà un compte ? Se connecter" Style="{StaticResource LinkLabel}" Margin="0,0,0,8">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnLoginTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </Grid>
+</ContentPage>

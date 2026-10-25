@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.WelcomePage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Bienvenue">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView>
+            <VerticalStackLayout Spacing="22" Padding="0,8,0,24">
+                <Border StrokeThickness="0" StrokeShape="RoundRectangle 24" HeightRequest="245">
+                    <Grid>
+                        <Image Source="solidarity_hands.png" Aspect="AspectFill" />
+                        <BoxView Color="#990D3327" />
+                        <VerticalStackLayout VerticalOptions="End" Padding="22" Spacing="6">
+                            <Label Text="ENSEMBLE, PLUS SOLIDAIRES" FontSize="11"
+                                   FontAttributes="Bold" TextColor="#C6F3D6" CharacterSpacing="1.2" />
+                            <Label Text="CaisseQuartier" FontSize="30" FontAttributes="Bold"
+                                   TextColor="White" />
+                            <Label Text="La confiance se construit dans la transparence."
+                                   FontSize="14" TextColor="White" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Votre association, réunie au même endroit."
+                           Style="{StaticResource PageTitle}" FontSize="24" />
+                    <Label Text="Cotisations, dépenses et projets communs : chaque membre suit l'avancement en toute clarté."
+                           Style="{StaticResource SubtitleText}" />
+                </VerticalStackLayout>
+
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="13">
+                        <Label Text="Une caisse transparente" Style="{StaticResource SubtitleText}"
+                               TextColor="{StaticResource CqNavy}" FontAttributes="Bold" />
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto"
+                              ColumnSpacing="12" RowSpacing="12">
+                            <Label Text="●" TextColor="{StaticResource CqGreen}" />
+                            <Label Grid.Column="1" Text="Les membres et leurs informations réunis dans un annuaire partagé."
+                                   Style="{StaticResource CaptionText}" />
+                            <Label Grid.Row="1" Text="●" TextColor="{StaticResource CqGreen}" />
+                            <Label Grid.Row="1" Grid.Column="1" Text="Les cotisations et les dépenses enregistrées au fil de l'eau."
+                                   Style="{StaticResource CaptionText}" />
+                            <Label Grid.Row="2" Text="●" TextColor="{StaticResource CqGreen}" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="Un projet commun avec un objectif et des rapports périodiques."
+                                   Style="{StaticResource CaptionText}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10" Padding="0,8,0,0">
+            <controls:ActionButton Text="Se connecter" Kind="Primary" Clicked="OnLoginClicked" />
+            <controls:ActionButton Text="Créer ou rejoindre une association"
+                                   Kind="Secondary" Clicked="OnRegisterClicked" />
+            <Label Text="Les données sont partagées avec les membres connectés au serveur de l'association."
+                   Style="{StaticResource CaptionText}" FontSize="11"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

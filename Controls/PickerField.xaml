@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CaisseQuartier.Controls.PickerField">
+    <Grid HeightRequest="48" IsClippedToBounds="True">
+        <Border Style="{StaticResource FieldBorder}">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                <Label x:Name="ValueLabel" FontSize="15" TextColor="{StaticResource CqText}"
+                       VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                <Image Grid.Column="1" Source="icon_chevron_down.png"
+                       WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+            </Grid>
+        </Border>
+        <!-- Sélecteur natif quasi transparent, posé par-dessus le champ stylé -->
+        <Picker x:Name="Selector" Opacity="0.011" SelectedIndexChanged="OnSelectedIndexChanged" />
+    </Grid>
+</ContentView>

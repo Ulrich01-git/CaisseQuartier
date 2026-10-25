@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.RapportPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Rapport">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="16">
+                <controls:PageHeader Title="Rapport" />
+
+                <Label Text="Choisissez la période du rapport." Style="{StaticResource SubtitleText}" />
+                <controls:InlineNotice x:Name="Notice" />
+
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Présentation du projet"
+                               Style="{StaticResource FieldLabel}" />
+                        <Label Text="Rapport de deux pages : objectifs, avancement, difficultés et prochaines étapes."
+                               Style="{StaticResource CaptionText}" />
+                        <controls:ActionButton x:Name="ProjectReportButton"
+                                               Text="Télécharger le rapport du projet (2 pages)"
+                                               Kind="Secondary" Clicked="OnProjectReportClicked" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Période" Style="{StaticResource FieldLabel}" />
+                    <Picker x:Name="PeriodPicker" SelectedIndexChanged="OnPeriodChanged" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Type de synthèse" Style="{StaticResource FieldLabel}" />
+                    <Picker x:Name="TypePicker" SelectedIndexChanged="OnTypeChanged" />
+                </VerticalStackLayout>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Date de début" Style="{StaticResource FieldLabel}" />
+                        <controls:DateField x:Name="StartInput" DateChanged="OnDateChanged" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1" Spacing="6">
+                        <Label Text="Date de fin" Style="{StaticResource FieldLabel}" />
+                        <controls:DateField x:Name="EndInput" DateChanged="OnDateChanged" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Label x:Name="RangeError" Style="{StaticResource ErrorText}"
+                       Text="La date de début doit précéder la date de fin." IsVisible="False" />
+
+                <Border x:Name="LoadingCard" Style="{StaticResource CardBorder}" IsVisible="False">
+                    <controls:LoadingView Message="Calcul du rapport en cours…" />
+                </Border>
+
+                <VerticalStackLayout x:Name="ReportSection" Spacing="16" IsVisible="False">
+                    <Border Style="{StaticResource CardBorder}">
+                        <VerticalStackLayout Spacing="12">
+                            <Label x:Name="ReportTitle" Text="Synthèse de la période · FCFA"
+                                   Style="{StaticResource CaptionText}" />
+
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Total cotisations" Style="{StaticResource SubtitleText}" TextColor="{StaticResource CqText}" />
+                                <Label x:Name="ContributionsValue" Grid.Column="1" Style="{StaticResource ValueLabel}" />
+                            </Grid>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Total dépenses" Style="{StaticResource SubtitleText}" TextColor="{StaticResource CqText}" />
+                                <Label x:Name="ExpensesValue" Grid.Column="1" Style="{StaticResource ValueLabel}" />
+                            </Grid>
+
+                            <BoxView HeightRequest="1" Color="{StaticResource CqBorder}" />
+
+                            <Border x:Name="NetBox" StrokeThickness="0" StrokeShape="RoundRectangle 8"
+                                    Padding="14,10" BackgroundColor="{StaticResource CqGreenSoft}">
+                                <VerticalStackLayout Spacing="2">
+                                    <Label x:Name="NetCaption" Text="Solde net" FontSize="12"
+                                           TextColor="{StaticResource CqGreen}" />
+                                    <Label x:Name="NetValue" FontSize="24" FontAttributes="Bold"
+                                           TextColor="{StaticResource CqGreen}" />
+                                </VerticalStackLayout>
+                            </Border>
+                                <Label x:Name="CountLabel" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <VerticalStackLayout x:Name="ActivitySection" Spacing="8">
+                        <Label Text="Détail des événements" Style="{StaticResource SubtitleText}"
+                                   FontAttributes="Bold" TextColor="{StaticResource CqNavy}" />
+                        <Border x:Name="ActivityCard" Style="{StaticResource CardBorder}" />
+                    </VerticalStackLayout>
+
+                    <controls:EmptyStateView x:Name="EmptyState" IconSource="icon_chart.png"
+                                             Title="Aucune donnée sur la période choisie"
+                                             Message="Choisissez une autre période pour consulter son rapport."
+                                             IsVisible="False" />
+
+                    <Label x:Name="NoteLabel" Style="{StaticResource CaptionText}"
+                           Text="Le solde net correspond aux cotisations moins les dépenses de la période." />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <controls:ActionButton x:Name="ExportButton" Text="Exporter le PDF de synthèse"
+                                   Kind="Primary" Clicked="OnExportClicked" />
+            <controls:ActionButton Text="Retour" IconSource="icon_arrow_left.png"
+                                   Kind="Secondary" Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

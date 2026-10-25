@@ -1,49 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="CaisseQuartier.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:CaisseQuartier"
-    Title="CaisseQuartier">
+<Shell x:Class="CaisseQuartier.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:CaisseQuartier.Views"
+       Shell.FlyoutBehavior="Disabled"
+       Shell.NavBarIsVisible="False"
+       Shell.BackgroundColor="#F7F7F7"
+       Title="CaisseQuartier">
 
-    <ShellContent
-        Title="Connexion"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <ShellContent Title="Bienvenue" Route="WelcomePage"
+                  ContentTemplate="{DataTemplate views:WelcomePage}" />
 
-    <ShellContent
-        Title="Inscription"
-        ContentTemplate="{DataTemplate local:RegisterPage}"
-        Route="RegisterPage" />
+    <ShellContent Title="Connexion" Route="ConnexionPage"
+                  ContentTemplate="{DataTemplate views:ConnexionPage}" />
 
-    <ShellContent
-        Title="Accueil"
-        ContentTemplate="{DataTemplate local:DashboardPage}"
-        Route="DashboardPage" />
+    <ShellContent Title="Inscription" Route="InscriptionPage"
+                  ContentTemplate="{DataTemplate views:InscriptionPage}" />
 
-    <ShellContent
-        Title="Membres"
-        ContentTemplate="{DataTemplate local:MembersPage}"
-        Route="MembersPage" />
-
-    <ShellContent
-        Title="Cotisations"
-        ContentTemplate="{DataTemplate local:NewContributionPage}"
-        Route="NewContributionPage" />
-
-    <ShellContent
-        Title="Dépenses"
-        ContentTemplate="{DataTemplate local:ExpensesPage}"
-        Route="ExpensesPage" />
-
-    <ShellContent
-        Title="Rapports"
-        ContentTemplate="{DataTemplate local:ReportsPage}"
-        Route="ReportsPage" />
-
-    <ShellContent
-        Title="Relances"
-        ContentTemplate="{DataTemplate local:RemindersPage}"
-        Route="RemindersPage" />
-
+    <ShellContent Title="Accueil" Route="AccueilPage"
+                  ContentTemplate="{DataTemplate views:AccueilPage}" />
 </Shell>

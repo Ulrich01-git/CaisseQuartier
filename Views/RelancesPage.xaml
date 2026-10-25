@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.RelancesPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Relances">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="14">
+                <controls:PageHeader Title="Relances" />
+                <Label x:Name="PeriodCaption" Style="{StaticResource CaptionText}" />
+
+                <controls:InlineNotice x:Name="Notice" />
+
+                <controls:LoadingView x:Name="Loading" Message="Chargement des retards…" IsVisible="False" />
+
+                <controls:EmptyStateView x:Name="EmptyState" IconSource="icon_check_green.png"
+                                         IsPositive="True"
+                                         Title="Aucun retard, bravo !"
+                                         Message="Tous les membres sont à jour sur la période."
+                                         IsVisible="False" />
+
+                <VerticalStackLayout x:Name="ListSection" Spacing="14" IsVisible="False">
+                    <Border Style="{StaticResource CardBorder}">
+                        <VerticalStackLayout Spacing="4">
+                            <Label x:Name="DueLabel" FontSize="15" FontAttributes="Bold"
+                                   TextColor="{StaticResource CqRed}" />
+                            <Label x:Name="CountLabel" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <VerticalStackLayout x:Name="Cards" Spacing="14" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <controls:ActionButton Grid.Row="1" Text="Retour" IconSource="icon_arrow_left.png"
+                               Kind="Secondary" Clicked="OnBackClicked" />
+    </Grid>
+</ContentPage>

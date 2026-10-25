@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.AssociationPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Projet commun">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="16">
+                <controls:PageHeader Title="Notre projet commun" />
+                <Label Text="Expliquez concrètement pourquoi votre association cotise et le montant visé."
+                       Style="{StaticResource SubtitleText}" />
+                <controls:InlineNotice x:Name="Notice" />
+                <controls:FormField x:Name="NameField" Title="Nom de l'association" Placeholder="Nom du groupe" />
+                <controls:FormField x:Name="PurposeField" Title="Notre objectif" Placeholder="Pourquoi nous cotisons" />
+                <controls:FormField x:Name="GoalField" Title="Objectif mensuel" Placeholder="0"
+                                    Suffix="FCFA" IsNumeric="True" />
+                <Border BackgroundColor="{StaticResource CqInfoSoft}" StrokeThickness="0"
+                        StrokeShape="RoundRectangle 12" Padding="16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Code d'invitation" Style="{StaticResource FieldLabel}" />
+                        <Label x:Name="JoinCodeLabel" FontSize="24" FontAttributes="Bold"
+                               TextColor="{StaticResource CqNavy}" CharacterSpacing="2" />
+                        <Label Text="Partagez ce code uniquement avec les membres de votre association."
+                               Style="{StaticResource CaptionText}" />
+                    </VerticalStackLayout>
+                </Border>
+                <Label x:Name="RoleLabel" Style="{StaticResource CaptionText}" />
+            </VerticalStackLayout>
+        </ScrollView>
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <controls:ActionButton x:Name="SaveButton" Text="Enregistrer le projet"
+                                   Kind="Primary" Clicked="OnSaveClicked" />
+            <controls:ActionButton Text="Retour" IconSource="icon_arrow_left.png"
+                                   Kind="Secondary" Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

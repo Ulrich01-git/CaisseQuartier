@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.DepensesPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Dépenses">
+    <Grid>
+        <Grid RowDefinitions="*,Auto" RowSpacing="12">
+            <ScrollView>
+                <VerticalStackLayout Spacing="14">
+                    <controls:PageHeader Title="Dépenses" />
+                    <Label x:Name="PeriodCaption" Style="{StaticResource CaptionText}" />
+
+                    <controls:InlineNotice x:Name="Notice" />
+
+                    <Border BackgroundColor="{StaticResource CqInfoSoft}" StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12" Padding="16">
+                        <VerticalStackLayout Spacing="10">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Total dépenses" Style="{StaticResource SubtitleText}" TextColor="{StaticResource CqText}" />
+                                <Label x:Name="TotalLabel" Grid.Column="1" Text="—" Style="{StaticResource ValueLabel}" />
+                            </Grid>
+                            <Label x:Name="CountLabel" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <controls:LoadingView x:Name="Loading" Message="Chargement des dépenses…" IsVisible="False" />
+
+                    <controls:EmptyStateView x:Name="EmptyState" IconSource="icon_receipt.png"
+                                             Title="Aucune dépense enregistrée ce mois-ci"
+                                             Message="Les dépenses ajoutées apparaîtront dans cette liste."
+                                             IsVisible="False" />
+
+                    <Border x:Name="ListCard" Style="{StaticResource CardBorder}" Padding="0" IsVisible="False" />
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <VerticalStackLayout Grid.Row="1" Spacing="10">
+                <controls:ActionButton Text="Ajouter une dépense" IconSource="icon_plus_white.png"
+                                       Kind="Primary" Clicked="OnAddClicked" />
+                <controls:ActionButton Text="Retour" IconSource="icon_arrow_left.png"
+                                       Kind="Secondary" Clicked="OnBackClicked" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <controls:BottomSheet x:Name="AddSheet" Title="Ajouter une dépense" IsVisible="False">
+            <controls:BottomSheet.Body>
+                <VerticalStackLayout Spacing="14">
+                    <controls:FormField x:Name="TitleField" Title="Dépense liée au projet"
+                                        Placeholder="Ex. transport des matériaux" />
+                    <controls:FormField x:Name="DescriptionField" Title="Détails (facultatif)"
+                                        Placeholder="Précisez le besoin financé" />
+                    <controls:FormField x:Name="AmountField" Title="Montant" Placeholder="0" Suffix="FCFA" IsNumeric="True" />
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Date" Style="{StaticResource FieldLabel}" />
+                        <controls:DateField x:Name="ExpenseDateField" />
+                    </VerticalStackLayout>
+                    <controls:ActionButton Text="Ajouter" Kind="Primary" Clicked="OnConfirmAddClicked" />
+                    <controls:ActionButton Text="Annuler" Kind="Secondary" Clicked="OnCancelAddClicked" />
+                </VerticalStackLayout>
+            </controls:BottomSheet.Body>
+        </controls:BottomSheet>
+    </Grid>
+</ContentPage>

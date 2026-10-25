@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CaisseQuartier.Controls"
+             x:Class="CaisseQuartier.Views.MembresPage"
+             Style="{StaticResource CqPage}"
+             Shell.NavBarIsVisible="False"
+             Title="Membres">
+    <Grid RowDefinitions="*,Auto" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="14">
+                <controls:PageHeader Title="Annuaire des membres" />
+                <Label Text="Profils partagés avec les membres de l'association."
+                       Style="{StaticResource SubtitleText}" />
+                <controls:InlineNotice x:Name="Notice" />
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Rechercher" Style="{StaticResource FieldLabel}" />
+                    <Border Style="{StaticResource FieldBorder}">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Image Source="icon_search.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+                            <Entry x:Name="SearchEntry" Grid.Column="1" Style="{StaticResource BareEntry}"
+                                   Placeholder="Nom, téléphone ou email" TextChanged="OnSearchChanged" />
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <controls:LoadingView x:Name="Loading" Message="Synchronisation avec l'association…" IsVisible="False" />
+                <controls:EmptyStateView x:Name="EmptyState" IconSource="icon_users.png"
+                                         Title="Aucun profil pour le moment"
+                                         Message="Ajoutez un membre. Son profil sera partagé et il pourra l'activer avec le code de l'association."
+                                         IsVisible="False" />
+                <VerticalStackLayout x:Name="ListSection" Spacing="8" IsVisible="False">
+                    <Label x:Name="SummaryLabel" Style="{StaticResource CaptionText}" />
+                    <Border x:Name="ListCard" Style="{StaticResource CardBorder}" Padding="0" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <controls:ActionButton Text="Ajouter un profil membre" IconSource="icon_plus_white.png"
+                                   Kind="Primary" Clicked="OnAddClicked" />
+            <controls:ActionButton Text="Retour" IconSource="icon_arrow_left.png"
+                                   Kind="Secondary" Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Charte graphique CaisseQuartier (relevée sur les maquettes) -->
+    <Color x:Key="CqNavy">#1E3A5F</Color>
+    <Color x:Key="CqBackground">#F7F7F7</Color>
+    <Color x:Key="CqSurface">#FFFFFF</Color>
+    <Color x:Key="CqBorder">#C8CED5</Color>
+    <Color x:Key="CqText">#263442</Color>
+    <Color x:Key="CqTextMuted">#6B7785</Color>
+    <Color x:Key="CqGreen">#2E7D32</Color>
+    <Color x:Key="CqGreenSoft">#EDF5ED</Color>
+    <Color x:Key="CqRed">#D32F2F</Color>
+    <Color x:Key="CqRedSoft">#FFF0F0</Color>
+    <Color x:Key="CqInfoSoft">#E6E9ED</Color>
+    <Color x:Key="CqDisabledBg">#E6E9ED</Color>
+    <Color x:Key="CqDisabledText">#8A94A0</Color>
+
+    <SolidColorBrush x:Key="CqNavyBrush" Color="{StaticResource CqNavy}" />
+    <SolidColorBrush x:Key="CqBorderBrush" Color="{StaticResource CqBorder}" />
+    <SolidColorBrush x:Key="CqRedBrush" Color="{StaticResource CqRed}" />
+    <SolidColorBrush x:Key="CqGreenBrush" Color="{StaticResource CqGreen}" />
+</ResourceDictionary>
